@@ -238,6 +238,24 @@ h3 {
   font-weight: 800;
 }
 
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-badges span {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  padding: 9px 11px;
+  color: #efe7d8;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(18px);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -357,6 +375,13 @@ h3 {
 .section-heading {
   width: min(720px, 100%);
   margin-bottom: 34px;
+}
+
+.section-note {
+  max-width: 680px;
+  margin: -16px 0 28px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .section-heading h2,
@@ -508,17 +533,18 @@ details:hover {
 }
 
 .compare .before {
-  filter: blur(1.2px) saturate(0.45) contrast(0.78) brightness(0.55);
+  filter: blur(1.6px) saturate(0.38) contrast(0.72) brightness(0.48);
 }
 
 .dirt-layer {
   z-index: 1;
   background:
-    radial-gradient(circle at 18% 20%, rgba(83, 64, 34, 0.78) 0 3px, transparent 6px),
-    radial-gradient(circle at 62% 34%, rgba(52, 45, 36, 0.62) 0 4px, transparent 8px),
-    radial-gradient(circle at 38% 72%, rgba(98, 82, 51, 0.66) 0 3px, transparent 8px),
-    linear-gradient(105deg, rgba(74, 58, 36, 0.58), transparent 44%),
-    repeating-linear-gradient(98deg, transparent 0 18px, rgba(109, 88, 56, 0.28) 19px 22px);
+    radial-gradient(circle at 18% 20%, rgba(83, 64, 34, 0.88) 0 4px, transparent 8px),
+    radial-gradient(circle at 62% 34%, rgba(52, 45, 36, 0.72) 0 5px, transparent 10px),
+    radial-gradient(circle at 38% 72%, rgba(98, 82, 51, 0.76) 0 4px, transparent 10px),
+    linear-gradient(105deg, rgba(74, 58, 36, 0.68), transparent 44%),
+    repeating-linear-gradient(98deg, transparent 0 14px, rgba(109, 88, 56, 0.34) 15px 19px),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(80, 63, 39, 0.26));
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -526,8 +552,9 @@ details:hover {
 .clean-layer {
   z-index: 1;
   background:
-    linear-gradient(115deg, transparent 0 38%, rgba(255, 255, 255, 0.28) 44%, transparent 52%),
-    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.26), transparent 22%);
+    linear-gradient(115deg, transparent 0 34%, rgba(255, 255, 255, 0.36) 43%, transparent 53%),
+    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.34), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), transparent 62%);
   pointer-events: none;
 }
 
@@ -573,6 +600,35 @@ details:hover {
 .photo-slider {
   display: grid;
   place-items: center;
+}
+
+.gallery-caption {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  border: 1px solid var(--white-line);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(18px);
+}
+
+.gallery-caption strong,
+.gallery-caption span {
+  display: block;
+}
+
+.gallery-caption strong {
+  color: var(--gold-light);
+  font-size: 18px;
+}
+
+.gallery-caption span {
+  margin-top: 4px;
+  color: #e7dfd0;
+  font-size: 13px;
 }
 
 .slider-btn {
@@ -775,6 +831,34 @@ details:hover {
 .ritual-card p {
   color: var(--muted);
   line-height: 1.7;
+}
+
+.final-contact {
+  padding-top: 24px;
+}
+
+.final-contact-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 28px;
+  align-items: center;
+  padding: 34px;
+  background:
+    linear-gradient(135deg, rgba(216, 180, 99, 0.18), rgba(255, 255, 255, 0.055)),
+    rgba(12, 12, 12, 0.68);
+}
+
+.final-contact-inner p {
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.final-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .map {
@@ -1112,8 +1196,13 @@ details p {
   .saved-reviews,
   .ritual-grid,
   .location,
-  .cta {
+  .cta,
+  .final-contact-inner {
     grid-template-columns: 1fr;
+  }
+
+  .final-actions {
+    justify-content: flex-start;
   }
 
   .hero-stats div {
@@ -1168,6 +1257,7 @@ details p {
   }
 
   .hero-actions,
+  .final-actions .btn,
   .btn {
     width: 100%;
   }

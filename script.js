@@ -79,13 +79,31 @@ compareInput.addEventListener("input", (event) => updateCompare(event.target.val
 updateCompare(compareInput.value);
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
+  {
+    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+    title: "Панорамные окна",
+    text: "больше света и чистый вид из квартиры"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80",
+    title: "Чистые рамы",
+    text: "аккуратная обработка без следов грязи"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=80",
+    title: "Светлый интерьер",
+    text: "окна визуально освежают всю комнату"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
+    title: "Стекло без разводов",
+    text: "чистая прозрачность для дома и офиса"
+  }
 ];
 
 const galleryImage = document.querySelector("#galleryImage");
+const galleryCaption = document.querySelector("#galleryCaption");
+const galleryCaptionText = document.querySelector(".gallery-caption span");
 const galleryPrev = document.querySelector(".slider-btn.prev");
 const galleryNext = document.querySelector(".slider-btn.next");
 let galleryIndex = 0;
@@ -94,7 +112,9 @@ function setGalleryImage(direction = 1) {
   galleryImage.style.opacity = "0";
   setTimeout(() => {
     galleryIndex = (galleryIndex + direction + galleryImages.length) % galleryImages.length;
-    galleryImage.src = galleryImages[galleryIndex];
+    galleryImage.src = galleryImages[galleryIndex].src;
+    galleryCaption.textContent = galleryImages[galleryIndex].title;
+    galleryCaptionText.textContent = galleryImages[galleryIndex].text;
     galleryImage.style.opacity = "1";
   }, 180);
   playTone(420, 0.055, "triangle", 0.016);
@@ -172,7 +192,14 @@ function renderSavedReviews() {
 
     const body = document.createElement("div");
     body.className = "saved-review-body";
-    body.innerHTML = `<div class="stars">★★★★★</div><h4>${item.name}</h4><p>${item.text}</p>`;
+    const stars = document.createElement("div");
+    stars.className = "stars";
+    stars.textContent = "★★★★★";
+    const title = document.createElement("h4");
+    title.textContent = item.name;
+    const text = document.createElement("p");
+    text.textContent = item.text;
+    body.append(stars, title, text);
     card.append(body);
 
     if (item.photo) {
@@ -332,6 +359,12 @@ function getCopilotAnswer(question) {
   }
   if (q.includes("выбрать") || q.includes("какой")) {
     return "Если нужны только стекла и базовая чистота, берите Стандарт за 4990 ₸. Если хотите весь комплекс по квартире: стекла, рамы и подоконники, лучше Комбо за 6999 ₸.";
+  }
+  if (q.includes("развод") || q.includes("гряз") || q.includes("мутн")) {
+    return "Для мутных и грязных окон лучше Комбо: кроме стекол очищаются рамы и подоконники, поэтому результат выглядит заметно чище.";
+  }
+  if (q.includes("уход") || q.includes("энерг") || q.includes("свет")) {
+    return "Чистые окна пропускают больше света и визуально освежают квартиру. Для поддержания эффекта лучше протирать подоконники сухой микрофиброй между мойками.";
   }
   if (q.includes("входит") || q.includes("тариф") || q.includes("комбо") || q.includes("стандарт")) {
     return "Стандарт: стекла, загрязнения, блеск без разводов. Комбо: все окна квартиры, стекла, рамы, подоконники и комплексная мойка.";
