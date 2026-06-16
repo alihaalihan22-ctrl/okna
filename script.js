@@ -68,11 +68,13 @@ const compare = document.querySelector("[data-compare]");
 const compareInput = compare.querySelector("input");
 const afterImage = compare.querySelector(".after");
 const cleanLayer = compare.querySelector(".clean-layer");
+const dirtLayer = compare.querySelector(".dirt-layer");
 
 function updateCompare(value) {
   compare.style.setProperty("--split", `${value}%`);
-  afterImage.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
-  cleanLayer.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+  afterImage.style.clipPath = `inset(0 0 0 ${value}%)`;
+  cleanLayer.style.clipPath = `inset(0 0 0 ${value}%)`;
+  dirtLayer.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
 }
 
 compareInput.addEventListener("input", (event) => updateCompare(event.target.value));

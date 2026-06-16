@@ -529,6 +529,10 @@ details:hover {
 
 .compare .after,
 .clean-layer {
+  clip-path: inset(0 0 0 52%);
+}
+
+.dirt-layer {
   clip-path: inset(0 48% 0 0);
 }
 
@@ -552,9 +556,8 @@ details:hover {
 .clean-layer {
   z-index: 1;
   background:
-    linear-gradient(115deg, transparent 0 34%, rgba(255, 255, 255, 0.36) 43%, transparent 53%),
-    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.34), transparent 22%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.10), transparent 62%);
+    linear-gradient(115deg, transparent 0 34%, rgba(255, 255, 255, 0.26) 43%, transparent 53%),
+    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.22), transparent 22%);
   pointer-events: none;
 }
 
