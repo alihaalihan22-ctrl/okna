@@ -64,25 +64,6 @@ document.querySelectorAll(".sound-click").forEach((element) => {
   element.addEventListener("click", () => playTone(640, 0.05, "triangle", 0.018));
 });
 
-const orderButtons = document.querySelectorAll("[data-open-order]");
-orderButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelector("#order").scrollIntoView({ behavior: "smooth" });
-    playTone(720, 0.08, "sine", 0.024);
-  });
-});
-
-const orderForm = document.querySelector("#orderForm");
-const formStatus = document.querySelector("#formStatus");
-
-orderForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  formStatus.textContent = "Заявка принята. Мы скоро свяжемся с вами.";
-  playTone(880, 0.09, "sine", 0.035);
-  setTimeout(() => playTone(1180, 0.08, "sine", 0.026), 95);
-  orderForm.reset();
-});
-
 const compare = document.querySelector("[data-compare]");
 const compareInput = compare.querySelector("input");
 const afterImage = compare.querySelector(".after");
@@ -98,9 +79,9 @@ compareInput.addEventListener("input", (event) => updateCompare(event.target.val
 updateCompare(compareInput.value);
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80",
+  "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=80",
   "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80"
 ];
 
@@ -362,7 +343,7 @@ function getCopilotAnswer(question) {
     return "Мы работаем по ЖК Ortau и рядом по Алматы. Можно заказать мойку на удобный день.";
   }
   if (q.includes("заказ") || q.includes("заказать") || q.includes("заяв")) {
-    return "Нажмите «Заказать мойку», оставьте телефон или напишите в WhatsApp. Мы уточним время и объем работ.";
+    return "Для связи нажмите кнопку WhatsApp или быстрый звонок. Формы бронирования на сайте нет.";
   }
   if (q.includes("время") || q.includes("долго") || q.includes("заним")) {
     return "Обычно мойка занимает один день. Точное время зависит от количества окон и загрязнений.";

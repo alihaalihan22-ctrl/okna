@@ -42,15 +42,15 @@
           <p class="hero-manifest">Чистые окна — чистая энергия</p>
           <div class="hero-actions">
             <a class="btn btn-gold sound-click" href="tel:+77473636239">Позвонить</a>
-            <button class="btn btn-glass sound-click" data-open-order>Заказать мойку</button>
+            <a class="btn btn-glass sound-click" href="https://wa.me/77473636239">Написать в WhatsApp</a>
           </div>
           <div class="hero-stats glass-panel">
             <div>
-              <strong data-counter="384">0</strong>
+              <strong data-counter="1">0</strong>
               <span>довольных клиентов</span>
             </div>
             <div>
-              <strong data-counter="12840">0</strong>
+              <strong data-counter="1">0</strong>
               <span>вымытых окон</span>
             </div>
             <div>
@@ -103,7 +103,7 @@
               <li>очистка загрязнений</li>
               <li>блеск без разводов</li>
             </ul>
-            <button class="btn btn-glass sound-click" data-open-order>Заказать</button>
+            <a class="btn btn-glass sound-click" href="https://wa.me/77473636239">Уточнить тариф</a>
           </article>
           <article class="price-card featured">
             <div class="popular">Лучший выбор</div>
@@ -119,7 +119,7 @@
               <li>подоконники</li>
               <li>полная комплексная мойка</li>
             </ul>
-            <button class="btn btn-gold sound-click" data-open-order>Заказать мойку</button>
+            <a class="btn btn-gold sound-click" href="https://wa.me/77473636239">Написать в WhatsApp</a>
           </article>
         </div>
       </section>
@@ -131,8 +131,8 @@
         </div>
         <div class="gallery-layout">
           <div class="compare glass-panel" data-compare>
-            <img class="before" src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1300&q=80" alt="Окна до мойки">
-            <img class="after" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1300&q=80" alt="Окна после мойки">
+            <img class="before" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1300&q=80" alt="Мутные и грязные окна до мойки">
+            <img class="after" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1300&q=80" alt="Чистые окна после мойки">
             <div class="dirt-layer" aria-hidden="true"></div>
             <div class="clean-layer" aria-hidden="true"></div>
             <input type="range" min="5" max="95" value="52" aria-label="Сравнить до и после">
@@ -141,7 +141,7 @@
           </div>
           <div class="photo-slider glass-panel">
             <button class="slider-btn prev sound-click" aria-label="Предыдущее фото">‹</button>
-            <img id="galleryImage" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Чистые окна в интерьере">
+            <img id="galleryImage" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Чистые панорамные окна в квартире">
             <button class="slider-btn next sound-click" aria-label="Следующее фото">›</button>
           </div>
         </div>
@@ -227,22 +227,28 @@
         </div>
       </section>
 
-      <section class="section cta reveal" id="order">
-        <div>
-          <p class="eyebrow">Заявка</p>
-          <h2>Закажите мойку окон в ЖК Ortau</h2>
-          <p>Оставьте телефон, и мы уточним удобное время визита.</p>
+      <section class="section ritual reveal">
+        <div class="section-heading">
+          <p class="eyebrow">AI Glass Care</p>
+          <h2>Умный уход за окнами без лишней суеты</h2>
         </div>
-        <form class="order-form glass-panel" id="orderForm">
-          <input type="text" name="name" placeholder="Ваше имя" required>
-          <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" required>
-          <select name="tariff" aria-label="Выберите тариф">
-            <option>Комбо — 6999 ₸</option>
-            <option>Стандарт — 4990 ₸</option>
-          </select>
-          <button class="btn btn-gold" type="submit">Отправить заявку</button>
-          <p class="form-status" id="formStatus" aria-live="polite"></p>
-        </form>
+        <div class="ritual-grid">
+          <article class="ritual-card glass-panel">
+            <span>01</span>
+            <h3>Оценка загрязнений</h3>
+            <p>AI-помощник подсказывает подходящий тариф по вашим вопросам: стекла, рамы, подоконники или вся квартира.</p>
+          </article>
+          <article class="ritual-card glass-panel">
+            <span>02</span>
+            <h3>Мойка без разводов</h3>
+            <p>Акцент на прозрачности стекла, аккуратной работе с рамами и чистом ощущении пространства.</p>
+          </article>
+          <article class="ritual-card glass-panel">
+            <span>03</span>
+            <h3>Чистая энергия</h3>
+            <p>После мойки окна дают больше света, интерьер выглядит свежее, а вид из квартиры становится дороже.</p>
+          </article>
+        </div>
       </section>
     </main>
 

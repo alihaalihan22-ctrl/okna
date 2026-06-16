@@ -750,6 +750,33 @@ details:hover {
   align-items: center;
 }
 
+.ritual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.ritual-card {
+  min-height: 270px;
+  padding: 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.ritual-card:hover {
+  border-color: var(--line);
+  transform: translateY(-6px);
+}
+
+.ritual-card span {
+  color: var(--gold-light);
+  font-weight: 900;
+}
+
+.ritual-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .map {
   position: relative;
   min-height: 420px;
@@ -1083,6 +1110,7 @@ details p {
   .gallery-layout,
   .review-studio,
   .saved-reviews,
+  .ritual-grid,
   .location,
   .cta {
     grid-template-columns: 1fr;
