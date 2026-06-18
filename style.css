@@ -437,6 +437,11 @@ details:hover {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.single-pricing {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
+
 .price-card {
   position: relative;
   min-height: 460px;
