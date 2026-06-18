@@ -87,12 +87,12 @@ const galleryImages = [
     text: "больше света и чистый вид из квартиры"
   },
   {
-    src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80",
-    title: "Чистые рамы",
-    text: "аккуратная обработка без следов грязи"
+    src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=80",
+    title: "Чистое стекло",
+    text: "ровный блеск без мутной пленки"
   },
   {
-    src: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=80",
+    src: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=80",
     title: "Светлый интерьер",
     text: "окна визуально освежают всю комнату"
   },
@@ -135,7 +135,7 @@ const reviews = [
     name: "Алия, ЖК Ortau"
   },
   {
-    text: "Заказывали тариф Стандартная. Все окна квартиры, рамы и подоконники отмыли так, будто окна только установили.",
+    text: "Заказывали тариф Стандартная. Все окна квартиры отмыли так, будто стекла только установили.",
     name: "Данияр, Алматы"
   },
   {
@@ -338,6 +338,46 @@ const chatForm = document.querySelector("#chatForm");
 const chatInput = document.querySelector("#chatInput");
 const chatLog = document.querySelector("#chatLog");
 const chatSuggestions = document.querySelectorAll("[data-question]");
+const scanGlass = document.querySelector("#scanGlass");
+const scanTitle = document.querySelector("#scanTitle");
+const scanText = document.querySelector("#scanText");
+const scanButtons = document.querySelectorAll("[data-scan]");
+
+const scanStates = {
+  light: {
+    title: "Слегка мутные окна",
+    text: "Достаточно стандартной мойки: убираем пленку, следы пыли и возвращаем стеклу прозрачность.",
+    dirt: 0.2
+  },
+  medium: {
+    title: "Пятна и пыль заметны",
+    text: "Нужна более внимательная очистка загрязнений. После мойки окно станет заметно светлее и чище.",
+    dirt: 0.46
+  },
+  heavy: {
+    title: "Сильно грязные окна",
+    text: "Подходит тариф «Стандартная» за 7500 ₸: очищаем все окна квартиры и убираем мутность без разводов.",
+    dirt: 0.78
+  }
+};
+
+function updateScan(level) {
+  const state = scanStates[level] || scanStates.light;
+  scanGlass.className = `scan-glass ${level}`;
+  scanGlass.style.setProperty("--scan-dirt", state.dirt);
+  scanTitle.textContent = state.title;
+  scanText.textContent = state.text;
+  scanButtons.forEach((button) => button.classList.toggle("active", button.dataset.scan === level));
+}
+
+scanButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    updateScan(button.dataset.scan);
+    playTone(690, 0.05, "triangle", 0.016);
+  });
+});
+
+updateScan("light");
 
 copilotToggle.addEventListener("click", () => {
   copilotWindow.classList.toggle("open");
@@ -352,6 +392,7 @@ function addMessage(text, type) {
   message.textContent = text;
   chatLog.append(message);
   chatLog.scrollTop = chatLog.scrollHeight;
+  return message;
 }
 
 function getCopilotAnswer(question) {
@@ -363,19 +404,22 @@ function getCopilotAnswer(question) {
     return "Сейчас доступен один понятный тариф: «Стандартная» за 7500 ₸. Он рассчитан на все окна квартиры.";
   }
   if (q.includes("развод") || q.includes("гряз") || q.includes("мутн")) {
-    return "Для мутных и грязных окон подходит тариф «Стандартная»: очищаем загрязнения, рамы и подоконники, чтобы результат выглядел заметно чище.";
+    return "Для мутных и грязных окон подходит тариф «Стандартная»: очищаем загрязнения на всех окнах квартиры, чтобы стекло стало заметно прозрачнее.";
   }
   if (q.includes("уход") || q.includes("энерг") || q.includes("свет")) {
-    return "Чистые окна пропускают больше света и визуально освежают квартиру. Для поддержания эффекта лучше протирать подоконники сухой микрофиброй между мойками.";
+    return "Чистые окна пропускают больше света и визуально освежают квартиру. Чтобы эффект держался дольше, не трите стекло сухой грубой тканью.";
   }
   if (q.includes("входит") || q.includes("тариф") || q.includes("стандарт")) {
-    return "В тариф «Стандартная» за 7500 ₸ входят все окна квартиры, рамы, подоконники, очистка загрязнений и блеск без разводов.";
+    return "В тариф «Стандартная» за 7500 ₸ входят все окна квартиры, очистка загрязнений, аккуратная работа и блеск без разводов.";
+  }
+  if (q.includes("ai") || q.includes("ии") || q.includes("оцен")) {
+    return "На сайте есть AI-оценка загрязнения: выберите состояние окна, и блок подскажет, какой результат ожидать.";
   }
   if (q.includes("отзыв") || q.includes("фото") || q.includes("видео") || q.includes("аудио")) {
     return "В блоке «Отзывы» можно написать отзыв, снять фото или видео окна и записать аудио. После сохранения отзыв появится на странице и останется в этом браузере.";
   }
   if (q.includes("жк") || q.includes("ortau") || q.includes("ортау")) {
-    return "Мы работаем по ЖК Ortau и рядом по Алматы. Можно заказать мойку на удобный день.";
+    return "Мы работаем по ЖК Ortau и рядом по Алматы. Можно написать в WhatsApp или позвонить.";
   }
   if (q.includes("заказ") || q.includes("заказать") || q.includes("заяв")) {
     return "Для связи нажмите кнопку WhatsApp или быстрый звонок. Формы бронирования на сайте нет.";
@@ -386,7 +430,7 @@ function getCopilotAnswer(question) {
   if (q.includes("тел") || q.includes("звон")) {
     return "Позвоните по номеру +7 747 363 62 39 или нажмите кнопку быстрого звонка на сайте.";
   }
-  return "Я помогу с ценой тарифа «Стандартная», составом работ, временем мойки и отзывами с фото, видео или аудио.";
+  return "Я помогу с ценой тарифа «Стандартная», составом работ, временем мойки, AI-оценкой и отзывами с фото, видео или аудио.";
 }
 
 chatForm.addEventListener("submit", (event) => {
@@ -396,10 +440,12 @@ chatForm.addEventListener("submit", (event) => {
   addMessage(question, "user");
   chatInput.value = "";
   playTone(760, 0.045, "triangle", 0.016);
+  const typing = addMessage("AI печатает...", "bot typing");
   setTimeout(() => {
-    addMessage(getCopilotAnswer(question), "bot");
+    typing.textContent = getCopilotAnswer(question);
+    typing.classList.remove("typing");
     playTone(560, 0.06, "sine", 0.014);
-  }, 360);
+  }, 520);
 });
 
 chatSuggestions.forEach((button) => {
